@@ -17,7 +17,7 @@
         <a
           href="https://github.com/nuxt/nuxt.js"
           target="_blank"
-          class="button--grey"
+          class="btn btn-danger"
         >GitHub</a>
       </div>
     </div>

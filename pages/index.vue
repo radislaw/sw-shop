@@ -8,6 +8,7 @@
       <h2 class="subtitle">
         Starsheeps Online Shop
       </h2>
+      {{ starships }}
       <div class="links">
         <a
           href="https://nuxtjs.org/"
@@ -25,12 +26,18 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import Logo from '~/components/Logo.vue'
 
 export default {
   components: {
     Logo
-  }
+  },
+  computed: mapState('starships', ['starships']),
+  mounted() {
+    this.getStarships()
+  },
+  methods: mapActions('starships', ['getStarships'])
 }
 </script>
 

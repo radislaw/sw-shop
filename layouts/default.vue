@@ -14,6 +14,7 @@ export default {
 
 <style lang="scss" scoped>
  .Default {
-   margin-top: 4.5rem;
+   margin-top: 4rem;
+   position: relative;
  }
 </style>

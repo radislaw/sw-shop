@@ -1,30 +1,12 @@
 <template>
   <section class="container">
+    <Spinner />
     <div>
-      <h1 class="subtitle">
+      <h1 class="subtitle text-center">
         Starsheeps Online Shop
       </h1>
       <div class="card-columns">
-        <div
-          v-for="(ship, i) in starships"
-          :key="i"
-          class="card text-warning bg-dark mb-3"
-          style="max-width: 18rem;"
-        >
-          <div class="card-header">
-            {{ ship.name }}
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">
-              {{ ship.name }}
-            </h5>
-            <p
-              class="card-text"
-            >
-              5
-            </p>
-          </div>
-        </div>
+        <ProductCard v-for="(item, i) in starships" :key="i" :product="item" />
       </div>
     </div>
   </section>
@@ -32,9 +14,13 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import ProductCard from '../components/ProductCard'
+import Spinner from '../components/Spinner'
 
 export default {
   components: {
+    Spinner,
+    ProductCard
   },
   computed: mapState('starships', ['starships']),
   mounted() {

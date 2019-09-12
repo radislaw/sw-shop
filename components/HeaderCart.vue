@@ -1,13 +1,18 @@
 <template>
   <div class="HeaderCart" title="cart">
     <svg-icon name="r2d2" class="icon" />
-    <span class="cart-count badge badge-warning">3</span>
+    <span class="cart-count badge badge-warning" v-if="cart.length">{{cart[0]}}</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HeaderCart'
+  name: 'HeaderCart',
+  computed: {
+    cart() {
+      return [3]
+    }
+  }
 }
 </script>
 

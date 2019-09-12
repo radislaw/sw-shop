@@ -14,10 +14,8 @@ export const mutations = {
 export const actions = {
   async getStarships({ commit }) {
     await this.$axios.get('https://swapi.co/api/starships')
-      .then((res) => {
-        if (res.status === 200) {
-          commit(SET_STARSHIPS, res.data)
-        }
+      .then(({ data }) => {
+        commit(SET_STARSHIPS, data.results)
       })
   }
 }

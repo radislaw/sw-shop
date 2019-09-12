@@ -41,7 +41,9 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://bootstrap-vue.js.org/docs/
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    // Doc: https://github.com/nuxt-community/svg-sprite-module
+    '@nuxtjs/svg-sprite'
   ],
   /*
   ** Axios module configuration

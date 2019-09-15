@@ -9,12 +9,26 @@
         <h5 class="name" @click="openItem(i)">
           {{ product.name }}
         </h5>
-        <button class="btn btn-warning mr-3">
-          Add to cart
-        </button>
-        <button class="btn btn-danger mr-3">
-          Remove from cart
-        </button>
+        <template v-if="product.cost_in_credits !== 'unknown'">
+          <div class="price mr-3">
+            {{ product.cost_in_credits }} cr.
+          </div>
+          <button
+            v-if="isProductInCart(product)"
+            class="btn btn-danger mr-3"
+            @click="remove(product)"
+          >
+            Remove from cart
+          </button>
+          <button
+            v-else
+            class="btn btn-warning mr-3"
+            @click="add(product)"
+          >
+            Add to cart
+          </button>
+        </template>
+        <div v-else class="alert alert-success mb-0 mr-3">Comming Soon!</div>
       </div>
 
       <div class="collapse" :class="{'show': i===openIndex}">
@@ -60,7 +74,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'ProductsList',
   data() {
@@ -68,15 +82,27 @@ export default {
       openIndex: null
     }
   },
-
-  computed: mapState('starships', ['starships']),
+  computed: {
+    ...mapState('starships', ['starships']),
+    ...mapState('cart', ['products'])
+  },
   methods: {
+    ...mapActions('cart', ['addToCart', 'removeFromCart']),
     openItem(i) {
       if (this.openIndex === i) {
         this.openIndex = null
       } else {
         this.openIndex = i
       }
+    },
+    add(product) {
+      this.addToCart(product)
+    },
+    remove(product) {
+      this.removeFromCart(product)
+    },
+    isProductInCart(product) {
+      return this.products.some(item => item.name === product.name)
     }
   }
 }

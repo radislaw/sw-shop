@@ -1,18 +1,15 @@
 <template>
   <div class="HeaderCart" title="cart">
     <svg-icon name="r2d2" class="icon" />
-    <span class="cart-count badge badge-warning" v-if="cart.length">{{cart[0]}}</span>
+    <span v-if="products.length" class="cart-count badge badge-warning">{{ products.length }}</span>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'HeaderCart',
-  computed: {
-    cart() {
-      return [3]
-    }
-  }
+  computed: mapState('cart', ['products'])
 }
 </script>
 

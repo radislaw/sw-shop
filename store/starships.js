@@ -35,7 +35,13 @@ export const actions = {
     commit(SET_FILTERED_STARSHIPS, result)
   },
   searchStarship({ state, commit }, text) {
-    const result = state.starships.filter(item => item.name.toLowerCase().includes(text.toLowerCase()))
+    const result = state.starships
+      .filter(item => item.name.toLowerCase().includes(text.toLowerCase()))
+    commit(SET_FILTERED_STARSHIPS, result)
+  },
+  filterStarships({ state, commit }, { type, value }) {
+    const result = state.starships
+      .filter(item => item[type].toLowerCase().includes(value.toLowerCase()))
     commit(SET_FILTERED_STARSHIPS, result)
   }
 }

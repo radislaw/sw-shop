@@ -13,7 +13,31 @@
           @input="searchStarship(searchText)"
         >
       </div>
-      <ProductsList />
+      <h5>Filters</h5>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <input
+            class="form-control"
+            placeholder="Price"
+            @input="filter($event, 'cost_in_credits')"
+          >
+        </div>
+        <div class="form-group col-md-4">
+          <input
+            class="form-control"
+            placeholder="Hyperdrive rating"
+            @input="filter($event, 'hyperdrive_rating')"
+          >
+        </div>
+        <div class="form-group col-md-4">
+          <input
+            class="form-control"
+            placeholder="Starship class"
+            @input="filter($event, 'starship_class')"
+          >
+        </div>
+        <ProductsList />
+      </div>
     </div>
   </section>
 </template>
@@ -26,23 +50,23 @@ export default {
   components: {
     ProductsList
   },
-  async fetch({ store }) {
-    await store.dispatch('starships/getStarships')
-  },
   data() {
     return {
       searchText: ''
     }
   },
+  async fetch({ store }) {
+    await store.dispatch('starships/getStarships')
+  },
   methods: {
-    ...mapActions('starships', ['searchStarship']),
+    ...mapActions('starships', ['searchStarship', 'filterStarships']),
     search() {
       this.searchStarship(this.searchText)
+    },
+    filter(e, type) {
+      const { value } = e.target
+      this.filterStarships({ type, value })
     }
   }
 }
 </script>
-
-<style>
-
-</style>

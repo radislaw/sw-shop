@@ -3,25 +3,42 @@
     <h1 class="text-center">
       Starsheeps Online Shop
     </h1>
-    <div class="row">
+    <div>
+      <div class="form-group">
+        <input
+          v-model="searchText"
+          type="text"
+          class="form-control"
+          placeholder="Search  starship"
+          @input="searchStarship(searchText)"
+        >
+      </div>
       <ProductsList />
     </div>
   </section>
 </template>
 
 <script>
-// import ProductCard from '../components/ProductCard'
-// import Spinner from '../components/Spinner'
+import { mapActions } from 'vuex'
 
 import ProductsList from '../components/ProductsList'
 export default {
   components: {
     ProductsList
-    // Spinner,
-    // ProductCard
   },
   async fetch({ store }) {
     await store.dispatch('starships/getStarships')
+  },
+  data() {
+    return {
+      searchText: ''
+    }
+  },
+  methods: {
+    ...mapActions('starships', ['searchStarship']),
+    search() {
+      this.searchStarship(this.searchText)
+    }
   }
 }
 </script>

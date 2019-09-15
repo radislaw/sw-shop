@@ -1,5 +1,5 @@
 <template>
-  <section class="container mb-5">
+  <section>
     <h1 class="text-center">
       Starsheeps Online Shop
     </h1>
@@ -26,13 +26,13 @@ export default {
   components: {
     ProductsList
   },
-  async fetch({ store }) {
-    await store.dispatch('starships/getStarships')
-  },
   data() {
     return {
       searchText: ''
     }
+  },
+  async fetch({ store }) {
+    await store.dispatch('starships/getStarships')
   },
   methods: {
     ...mapActions('starships', ['searchStarship']),
@@ -42,7 +42,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

@@ -1,7 +1,12 @@
 <template>
-  <div class="HeaderCart" title="cart">
+  <div class="HeaderCart" :class="{'-cursor': products.length}" @click="goToCart">
     <svg-icon name="r2d2" class="icon" />
-    <span v-if="products.length" class="cart-count badge badge-warning">{{ products.length }}</span>
+    <span
+      v-if="products.length"
+      class="cart-count badge badge-primary"
+    >
+      {{ products.length }}
+    </span>
   </div>
 </template>
 
@@ -9,7 +14,14 @@
 import { mapState } from 'vuex'
 export default {
   name: 'HeaderCart',
-  computed: mapState('cart', ['products'])
+  computed: mapState('cart', ['products']),
+  methods: {
+    goToCart() {
+      if (this.products.length) {
+        this.$router.push('/cart')
+      }
+    }
+  }
 }
 </script>
 
@@ -27,6 +39,9 @@ export default {
       left: 50%;
       transform: translateX(-50%) translateY(-50%);
       font-size: 1rem;
+    }
+    &.-cursor {
+      cursor: pointer;
     }
   }
 </style>

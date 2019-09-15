@@ -23,7 +23,7 @@
             </button>
             <button
               v-else
-              class="btn btn-warning mr-3"
+              class="btn btn-primary mr-3"
               @click="add(product)"
             >
               Add to cart

@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar fixed-top navbar-dark bg-dark justify-content-between">
-    <NLink to="/" class="navbar-brand text-warning">
+    <NLink to="/" class="navbar-brand text-primary">
       SW-SHOP
     </NLink>
     <HeaderCart />

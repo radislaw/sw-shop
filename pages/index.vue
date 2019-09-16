@@ -1,5 +1,5 @@
 <template>
-  <section class="container mb-5">
+  <section>
     <h1 class="text-center">
       Starsheeps Online Shop
     </h1>

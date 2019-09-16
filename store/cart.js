@@ -4,11 +4,11 @@ export const state = () => ({
   products: []
 })
 
-// export const getters = {
-//   totalProductsPrice: state => state.products.reduce((total, product) => {
-//     return total + +product.cost_in_credits
-//   }, 0)
-// }
+export const getters = {
+  totalProductsPrice: state => state.products.reduce((total, product) => {
+    return total + +product.cost_in_credits
+  }, 0)
+}
 
 export const mutations = {
   [SET_PRODUCTS](state, products) {
@@ -26,5 +26,8 @@ export const actions = {
   removeFromCart({ commit, state }, product) {
     const newProducts = state.products.filter(item => item.name !== product.name)
     commit(SET_PRODUCTS, newProducts)
+  },
+  clearCart({ commit }) {
+    commit(SET_PRODUCTS, [])
   }
 }

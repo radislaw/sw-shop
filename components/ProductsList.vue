@@ -19,7 +19,7 @@
               class="btn btn-danger mr-3"
               @click="remove(product)"
             >
-              Remove from cart
+              Remove
             </button>
             <button
               v-else

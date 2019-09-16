@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="Cart">
     <template v-if="products.length">
       <ul class="list-group mb-3">
         <li
@@ -16,14 +16,6 @@
           <span class="badge badge-primary badge-pill">{{ totalProductsPrice.toLocaleString() }} cr.</span>
         </li>
       </ul>
-      <!-- Button trigger modal -->
-      <div class="d-flex justify-content-center">
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
-          Purchase
-        </button>
-      </div>
-
-      <!-- Modal -->
       <CartModal />
     </template>
     <div v-else class="alert alert-warning">
@@ -38,7 +30,11 @@ import CartModal from '../components/CartModal'
 export default {
   name: '',
   components: { CartModal },
-
+  data() {
+    return {
+      isOpen: false
+    }
+  },
   computed: {
     ...mapState('cart', ['products']),
     ...mapGetters('cart', ['totalProductsPrice'])
@@ -48,3 +44,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .Cart {
+    margin-top: 7rem;
+  }
+</style>

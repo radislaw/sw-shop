@@ -19,7 +19,7 @@
       <CartModal />
     </template>
     <div v-else class="alert alert-warning">
-      Cart is empty
+      Cart is empty. Go to <NLink to="/" class="text-dark">Home Page</NLink>
     </div>
   </div>
 </template>

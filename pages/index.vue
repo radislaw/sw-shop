@@ -1,32 +1,28 @@
 <template>
-  <section class="container">
-    <Spinner />
-    <div>
-      <h1 class="subtitle text-center">
-        Starsheeps Online Shop
-      </h1>
-      <div class="card-columns">
-        <ProductCard v-for="(item, i) in starships" :key="i" :product="item" />
-      </div>
+  <section class="container mb-5">
+    <h1 class="text-center">
+      Starsheeps Online Shop
+    </h1>
+    <div class="row">
+      <ProductsList />
     </div>
   </section>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
-import ProductCard from '../components/ProductCard'
-import Spinner from '../components/Spinner'
+// import ProductCard from '../components/ProductCard'
+// import Spinner from '../components/Spinner'
 
+import ProductsList from '../components/ProductsList'
 export default {
   components: {
-    Spinner,
-    ProductCard
+    ProductsList
+    // Spinner,
+    // ProductCard
   },
-  computed: mapState('starships', ['starships']),
-  mounted() {
-    this.getStarships()
-  },
-  methods: mapActions('starships', ['getStarships'])
+  async fetch({ store }) {
+    await store.dispatch('starships/getStarships')
+  }
 }
 </script>
 

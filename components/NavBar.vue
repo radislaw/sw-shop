@@ -11,17 +11,6 @@
 import HeaderCart from './HeaderCart'
 export default {
   name: 'NavBar',
-  components: { HeaderCart },
-  data() {
-    return {}
-  },
-  computed: {},
-  mounted() {
-
-  },
-  methods: {}
+  components: { HeaderCart }
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

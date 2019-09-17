@@ -1,4 +1,4 @@
-// import { getStarships } from '../api/swapi'
+import isArraysEqual from '../utils/isArraysEqual'
 import { SET_STARSHIPS, SET_FILTERED_STARSHIPS, SET_FILTERS, SET_LOADING } from './mutationTypes'
 
 export const state = () => ({
@@ -33,8 +33,8 @@ export const mutations = {
 }
 
 export const actions = {
-  async getStarships({ commit }) {
-    let currentPage = 'https://swapi.co/api/starships'
+  async getStarships({ state, commit }) {
+    let currentPage = 'https://swapi.co/api/starships/'
     let result = []
     while (currentPage) {
       await this.$axios.get(currentPage)
@@ -44,8 +44,8 @@ export const actions = {
         })
         .catch(console.log)
     }
-    commit(SET_STARSHIPS, result)
-    commit(SET_FILTERED_STARSHIPS, result)
+    const isEqual = isArraysEqual(state.starships, result)
+    !isEqual && commit(SET_STARSHIPS, result)
   },
   searchStarship({ state, commit }, text) {
     const result = state.starships
@@ -54,18 +54,22 @@ export const actions = {
   },
   getFilters({ commit }) {
     if (localStorage.getItem('filters')) {
-      const filters = JSON.parse(localStorage.getItem('filters'))
-      commit(SET_FILTERS, filters)
+      commit(SET_FILTERS, JSON.parse(localStorage.getItem('filters')))
     }
   },
   filterStarships({ state, commit }, { type, value }) {
     const filters = type ? { ...state.filters, ...{ [type]: value } } : state.filters
     commit(SET_FILTERS, filters)
+
     let result = state.starships
     for (const key in state.filters) {
       result = result.filter(item => item[key].toLowerCase().includes(state.filters[key].toLowerCase()))
     }
 
     commit(SET_FILTERED_STARSHIPS, result)
+  },
+  clearFilters({ state, commit }) {
+    commit(SET_FILTERS, {})
+    commit(SET_FILTERED_STARSHIPS, state.starships)
   }
 }

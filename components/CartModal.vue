@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <div v-if="isOpen" class="modal-backdrop fade show" @click="closeModal"/>
+      <div v-if="isOpen" class="modal-backdrop fade show" @click="closeModal" />
     </div>
   </div>
 </template>
@@ -89,6 +89,9 @@ export default {
       if (this.name && this.race && this.deliveryDate) {
         this.clearCart()
         this.$router.replace('/')
+        if (localStorage.getItem('filters')) {
+          localStorage.removeItem('filters')
+        }
       }
     }
   }

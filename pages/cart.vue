@@ -1,21 +1,11 @@
 <template>
   <div class="Cart">
     <template v-if="products.length">
-      <ul class="list-group mb-3">
-        <li
-          v-for="(product, i) in products"
-          :key="i"
-          class="list-group-item d-flex justify-content-between align-items-center"
-        >
-          {{ product.name }}
-          <span class="badge badge-primary badge-pill">{{ product.cost_in_credits }} cr.</span>
-        </li>
-
-        <li class="list-group-item list-group-item-dark d-flex justify-content-between align-items-center">
-          Total Price:
-          <span class="badge badge-primary badge-pill">{{ totalProductsPrice.toLocaleString() }} cr.</span>
-        </li>
-      </ul>
+      <ProductsList :items="products" />
+      <div class="list-group-item list-group-item-dark d-flex justify-content-between align-items-center mb-4">
+        Total:
+        <span class="badge badge-primary badge-pill">{{ totalProductsPrice.toLocaleString() }} cr.</span>
+      </div>
       <CartModal />
     </template>
     <div v-else class="alert alert-warning">
@@ -30,9 +20,10 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import CartModal from '../components/CartModal'
+import ProductsList from '../components/ProductsList'
 export default {
   name: 'Cart',
-  components: { CartModal },
+  components: { ProductsList, CartModal },
   data() {
     return {
       isOpen: false

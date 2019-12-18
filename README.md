@@ -2,6 +2,8 @@
 
 > Starsheeps Online Shop
 
+ [![Run on Repl.it](https://repl.it/badge/github/radislaw/sw-shop)](https://repl.it/github/radislaw/sw-shop)
+
 ## Build Setup
 
 ``` bash
